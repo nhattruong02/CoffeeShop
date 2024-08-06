@@ -25,7 +25,7 @@ class FoodScreen extends StatelessWidget {
           onPressed:  () => Navigator.pop(context,idBill),
         ),
           backgroundColor: Colors.brown,
-          title: Text("Food"),
+          title: Text("Food & Drink"),
           automaticallyImplyLeading: true,
           centerTitle: true),
       body: MultiBlocProvider(

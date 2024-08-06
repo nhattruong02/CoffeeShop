@@ -13,10 +13,6 @@ class ApiService {
   Future<List<User>> getUsers() {
     return http.get(ApiUrl().API_USERS_LIST).then((http.Response response) {
       final String jsonBody = response.body;
-      final int statusCode = response.statusCode;
-      if (statusCode != 200 || jsonBody == null) {
-        print(response.reasonPhrase);
-      }
       final JsonDecoder _decode = new JsonDecoder();
       final playerListContainer = _decode.convert(jsonBody);
       final List users = playerListContainer['result'];
@@ -25,12 +21,11 @@ class ApiService {
   }
 
   Future getUser(String username, String password) async {
-    final url = "biggreydog78.conveyor.cloud";
+    final url = "bigshinymouse94.conveyor.cloud";
     final path = '/getUser';
     final query = {'username': username,
       'password': password};
     final uri = Uri.https(url,path,query);
-    print(uri);
     var response = await http.get(uri,headers:  {"Accept":"application/json"});
     if (response.statusCode == 200) {
       try{
@@ -54,8 +49,6 @@ class ApiService {
       if (response.statusCode == 201) {
         return User.fromJson(jsonDecode(response.body));
       } else {
-        print(user.toString());
-        print(response.body);
         throw Exception("Fail");
       }
     });
@@ -69,8 +62,6 @@ class ApiService {
       if (response.statusCode == 201) {
         return User.fromJson(jsonDecode(response.body));
       } else {
-        print(bill.toString());
-        print(response.body);
         throw Exception("Fail");
       }
     });
@@ -81,12 +72,6 @@ class ApiService {
       headers: {"Accept":"application/json"}
     ).then((http.Response response) {
       final String jsonBody = response.body;
-      final int statusCode = response.statusCode;
-      print("body1222 : ${response.body}");
-      print(response.statusCode);
-      if (statusCode != 200 || jsonBody == null) {
-        print(response.reasonPhrase);
-      }
       final JsonDecoder _decode = new JsonDecoder();
       final playerListContainer = _decode.convert(jsonBody);
       final List foods = playerListContainer;
@@ -98,12 +83,6 @@ class ApiService {
         headers: {"Accept":"application/json"}
     ).then((http.Response response) {
       final String jsonBody = response.body;
-      final int statusCode = response.statusCode;
-      print("body1222 : ${response.body}");
-      print(response.statusCode);
-      if (statusCode != 200 || jsonBody == null) {
-        print(response.reasonPhrase);
-      }
       final JsonDecoder _decode = new JsonDecoder();
       final playerListContainer = _decode.convert(jsonBody);
       final List tables = playerListContainer;
@@ -115,12 +94,6 @@ class ApiService {
         headers: {"Accept":"application/json"}
     ).then((http.Response response) {
       final String jsonBody = response.body;
-      final int statusCode = response.statusCode;
-      print("body1222 : ${response.body}");
-      print(response.statusCode);
-      if (statusCode != 200 || jsonBody == null) {
-        print(response.reasonPhrase);
-      }
       final JsonDecoder _decode = new JsonDecoder();
       final billListContainer = _decode.convert(jsonBody);
       final List bills = billListContainer;
@@ -129,7 +102,7 @@ class ApiService {
   }
 
   Future<List<BillDetail>> getBillDetail(int id) async{
-    final url = "biggreydog78.conveyor.cloud";
+    final url = "bigshinymouse94.conveyor.cloud";
     final path = '/GetBillById';
     final query = {'id': id.toString()};
     final uri = Uri.https(url,path,query);
@@ -158,7 +131,6 @@ class ApiService {
       if (response.statusCode == 201) {
         return BillDetail.fromJson(jsonDecode(response.body));
       } else {
-        print(response.body);
         throw Exception("Fail");
       }
     });
@@ -174,14 +146,13 @@ class ApiService {
     });
   }
   Future<Bill> putBillDetail(int id,double total) async{
-    final url = "biggreydog78.conveyor.cloud";
+    final url = "bigshinymouse94.conveyor.cloud";
     final path = '/PutBillDetail';
     final query = {'id': id.toString(), "total": total.toString()};
     final uri = Uri.https(url,path,query);
     var response = await http.put(uri,headers:  {"Content-Type":"application/json"},);
     final JsonDecoder _decode = new JsonDecoder();
     final bill = _decode.convert(response.body);
-
     return bill;
   }
 }

@@ -39,7 +39,7 @@ class RegisterBloc extends Bloc<RegisterEvent,RegisterState>{
     } else {
       emit(RegisterLoading());
       User user = User(event.fullname.toString().trim(), event.username.toString().trim(),
-          event.phone.toString().trim(), event.password.toString().trim());
+          event.password.toString().trim(), event.phone.toString().trim());
       final result = await _apiService.postUser(user);
       if (result != null) {
         emit(RegisterSuccess());
